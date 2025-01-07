@@ -6,8 +6,12 @@ function exibirTextoTela(tag, texto) {
     campo.innerHTML = texto
 }
 
-exibirTextoTela('h1', 'Jogo do número secreto');
-exibirTextoTela('p', 'Escolha um número entre 1 e 10');
+function exibirMensagemPadrao() {
+    exibirTextoTela('h1', 'Jogo do número secreto');
+    exibirTextoTela('p', 'Escolha um número entre 1 e 10');
+}
+
+exibirMensagemPadrao();
 
 function verificarChute() {
     let chute = document.querySelector('input').value;
@@ -17,6 +21,7 @@ function verificarChute() {
         let numeroTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
         let mensagensTentativas =  `Você descobriu o número secreto com ${tentativas} ${numeroTentativas}!`;
         exibirTextoTela('p', mensagensTentativas);
+        document.getElementById('reiniciar').removeAttribute('disabled');
     } else{
         if (chute > numeroSecreto) {
             exibirTextoTela('p', 'O número é menor!');
@@ -35,4 +40,12 @@ function gerarNumeroAleatorio() {
 function limparInput() {
     chute = document.querySelector('input');
     chute.value= '';
+}
+
+function reiniciarGamer() {
+    numeroSecreto = gerarNumeroAleatorio();
+    limparInput();
+    tentativas = 1;
+    exibirMensagemPadrao();
+    document.getElementById('reiniciar').setAttribute('disabled',true);
 }

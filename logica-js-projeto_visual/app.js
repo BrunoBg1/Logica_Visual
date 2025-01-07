@@ -24,9 +24,15 @@ function verificarChute() {
             exibirTextoTela('p', 'O número é maior!');
         }
         tentativas++;
+        limparInput(); 
     }
 }
 
 function gerarNumeroAleatorio() {
     return parseInt(Math.random() * 10 + 1);
+}
+
+function limparInput() {
+    chute = document.querySelector('input');
+    chute.value= '';
 }

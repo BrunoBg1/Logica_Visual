@@ -1,4 +1,6 @@
 let numeroSecreto = gerarNumeroAleatorio();
+let tentativas = 1;
+
 function exibirTextoTela(tag, texto) {
     let campo = document.querySelector(tag);
     campo.innerHTML = texto
@@ -12,13 +14,16 @@ function verificarChute() {
 
     if (chute == numeroSecreto) {
         exibirTextoTela('h1', 'Você acertou!');
-        exibirTextoTela('p', 'Parabéns você descobriu o número secreto!');
+        let numeroTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
+        let mensagensTentativas =  `Você descobriu o número secreto com ${tentativas} ${numeroTentativas}!`;
+        exibirTextoTela('p', mensagensTentativas);
     } else{
         if (chute > numeroSecreto) {
             exibirTextoTela('p', 'O número é menor!');
         }else{
             exibirTextoTela('p', 'O número é maior!');
         }
+        tentativas++;
     }
 }
 
